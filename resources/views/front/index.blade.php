@@ -48,21 +48,27 @@
                 </div>
             </div>
             <div class="row">
+                @forelse( $all_uikit as $item_all_uikit )
                 <div class="col-lg-3 col-12 mb-4">
                     <div class="item">
-                        <a href="{{ config('app.class_url').'/details/'.'look-at-me' }}">
+                        <a href="{{ config('app.class_url').'/details/'.$item_all_uikit->id }}">
                             <div class="thumbnail">
-                                <img src="https://assets.website-files.com/5beab1239ac8840644a660b4/602a001f400a92479b63e0e7_Pricing%20Aloe-p-500.png" alt="" class="img-fluid cover">
-                                <span class="badge bg-secondary p-2 mt-2">Business</span>
+                                <img src="{{ Storage::url($item_all_uikit->thumbnail) }}" alt="" class="img-fluid cover">
+                                <span class="badge bg-secondary p-2 mt-2">{{ $item_all_uikit->id_category }}</span>
                             </div>
                         </a>
                         <div class="info mt-3">
                             <h3 class="lh-base">
-                                Pricing Aloe Verra
+                                {{ $item_all_uikit->name }}
                             </h3>
                         </div>
                     </div>
                 </div>
+                @empty
+                <div class="col-lg-12 col-12 mb-4">
+                    <p>Empty...</p>
+                </div>
+                @endforelse
             </div>
         </div>
     </section>

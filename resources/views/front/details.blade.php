@@ -21,7 +21,7 @@
                 <div class="col-lg-3 col-12">
                     <div class="header-primary">
                         <h3 class="lh-base mb-3">
-                            Adventure Finance Dashboard Flutter Website
+                            {{ $uikit_details->name }}
                         </h3>
                         <p>
                             Designed by BaseKit
@@ -31,7 +31,7 @@
             </div>
             <div class="row pt-5">
                 <div class="col-lg-6 col-12">
-                    <img src="https://images.ui8.net/uploads/6_1622491688857.png" alt="" class="br-16 img-fluid">
+                    <img src="{{ Storage::url($uikit_details->thumbnail) }}" alt="" class="br-16 img-fluid">
                 </div>
                 <div class="bk-basic-box col-lg-4 col-12 ms-4">
                     <h4>
@@ -45,7 +45,7 @@
                             </p>
                         </div>
                         <p class="action">
-                            <a href="#" class="btn btn-info py-2 px-4">Download</a>
+                            <a href="{{ $uikit_details->url_file }}" class="btn btn-info py-2 px-4">Download</a>
                         </p>
                     </div>
                     <div class="clear"></div>
