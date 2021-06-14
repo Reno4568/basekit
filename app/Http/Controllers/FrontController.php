@@ -23,5 +23,11 @@ class FrontController extends Controller
         return view('front.details', compact('uikit_details'));
     }
 
+    public function gate()
+    {
+        return view('front.gate');
+
+    }
+
 
 }

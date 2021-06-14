@@ -24,7 +24,7 @@
                         Let's build something useful
                     </p>
                     <p class="my-4">
-                        <a href="#" class="btn btn-primary">
+                        <a href="{{ route('admin.new_product') }}" class="btn btn-primary">
                             Add New Product
                         </a>
                     </p>
