@@ -50,7 +50,19 @@ class AuthController extends Controller
 
     public function successLogin($user, $request)
     {
-        echo 'success login';
+        if (!strpos($user['avatar'], 'buildwithangga.com')) {
+            $user['avatar'] = 'https://buildwithangga.com' . $user['avatar'];
+        }
+        $request->session()->put('user', $user);
+
+        $user = collect($user)->only('name', 'email', 'avatar', 'is_premium');
+
+        $findPreviousUser = RegisteredUser::whereJsonContains('user->name', $user['name'])->first();
+        if (!$findPreviousUser) {
+            RegisteredUser::create(['user' => json_encode($user)]);
+        }
+
+        return redirect(session('link'));
     }
 
     public function logout(Request $request)
