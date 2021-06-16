@@ -23,7 +23,7 @@ class AuthController extends Controller
     public function callback(Request $request)
     {
 
-        dd('gak kesini');
+        // dd('gak kesini');
 
         try {
             
@@ -57,6 +57,8 @@ class AuthController extends Controller
             }
 
         } catch (\Exception $e) {
+
+            dd('kena ya');
 
             // return to gate
             return redirect()->route('gate')
