@@ -16,7 +16,7 @@ class AuthController extends Controller
 {
     public function redirectToGoogle()
     {
-        $test = Socialite::driver('google')->redirect();
+        $test = Socialite::driver('google')->user();
         dd($test);
 
         // redirect to google
