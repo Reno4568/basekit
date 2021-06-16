@@ -16,28 +16,16 @@ class AuthController extends Controller
 {
     public function redirectToGoogle()
     {
-        $test = Socialite::driver('google')->user();
-        dd($test);
-
         // redirect to google
         return Socialite::driver('google')->redirect();
     }
 
     public function callback(Request $request)
     {
-
-        $user = Socialite::driver('google')->user();
-        dd($user);
-
-        // dd('gak kesini');
-
         try {
             
             // checking google socialite - get data google
             $user = Socialite::driver('google')->user();
-
-            dd($user);
-
             $find_user = User::where('google_id', $user->getId())->first();
 
             if($find_user){
@@ -63,8 +51,6 @@ class AuthController extends Controller
             }
 
         } catch (\Exception $e) {
-
-            dd('kena ya');
 
             // return to gate
             return redirect()->route('gate')
