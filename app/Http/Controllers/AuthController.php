@@ -40,7 +40,7 @@ class AuthController extends Controller
                 return redirect()->route('index');
             }
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             return redirect('/gate')->with('error', 'Gagal menyambungkan dengan akun Google kamu');
         }
 
