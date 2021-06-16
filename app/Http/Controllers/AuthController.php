@@ -24,6 +24,8 @@ class AuthController extends Controller
     {
         try {
             $user = Socialite::driver('google')->user();
+            dd($user);
+
             $findUser = User::where('google_id', $user->getId())->first();
             if ($findUser) {
                 Auth::login($findUser);
