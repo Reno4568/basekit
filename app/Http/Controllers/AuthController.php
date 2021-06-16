@@ -22,6 +22,9 @@ class AuthController extends Controller
 
     public function callback(Request $request)
     {
+
+        dd('gak kesini');
+
         try {
             
             // checking google socialite - get data google
