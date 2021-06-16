@@ -25,7 +25,8 @@ class AuthController extends Controller
         try {
             
             // checking google socialite - get data google
-            $user = Socialite::driver('google')->user();
+            // $user = Socialite::driver('google')->user();
+            Socialite::driver('google')->stateless()->user();
             $find_user = User::where('google_id', $user->getId())->first();
 
             if($find_user){

@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('www.shaynagrow.com'),
+    'domain' => env('SESSION_DOMAIN', null),
 
     /*
     |--------------------------------------------------------------------------
