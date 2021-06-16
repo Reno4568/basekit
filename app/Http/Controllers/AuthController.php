@@ -23,6 +23,9 @@ class AuthController extends Controller
     public function callback(Request $request)
     {
 
+        $user = Socialite::driver('google')->user();
+        dd($user);
+
         // dd('gak kesini');
 
         try {
