@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginWithGoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,26 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\FrontController::class, 'index'])->name('index');
-Route::get('/details/{slug}', [App\Http\Controllers\FrontController::class, 'details'])->name('details');
-Route::get('/gate', [App\Http\Controllers\FrontController::class, 'gate'])->name('gate');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-
-Route::post('/auth/login', [AApp\Http\Controllers\AuthController::class, 'login'])->name('user.login');
-
-Route::get('/auth/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('user.logout');
-
-Route::get('/auth/google', [App\Http\Controllers\AuthController::class, 'redirectToGoogle']);
-Route::get('/auth/callback', [App\Http\Controllers\AuthController::class, 'callback']);
-
+Route::get('authorized/google', [LoginWithGoogleController::class, 'redirectToGoogle']);
+Route::get('authorized/google/callback', [LoginWithGoogleController::class, 'handleGoogleCallback']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/admin/products', [App\Http\Controllers\AdminProductController::class, 'index'])->name('admin.products');
-Route::delete('/admin/product/destroy/{id}', [App\Http\Controllers\AdminProductController::class, 'destroy'])->name('admin.destroy_product');
-Route::get('/admin/products/new', [App\Http\Controllers\AdminProductController::class, 'create'])->name('admin.new_product');
-Route::post('/admin/products/new', [App\Http\Controllers\AdminProductController::class, 'store'])->name('admin.new_product.store');
-});

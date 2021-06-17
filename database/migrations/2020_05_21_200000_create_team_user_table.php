@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUikitTable extends Migration
+class CreateTeamUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateUikitTable extends Migration
      */
     public function up()
     {
-        Schema::create('uikit', function (Blueprint $table) {
+        Schema::create('team_user', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('id_category');
-            $table->string('thumbnail');
-            $table->string('url_file');
+            $table->foreignId('team_id');
+            $table->foreignId('user_id');
+            $table->string('role')->nullable();
             $table->timestamps();
+
+            $table->unique(['team_id', 'user_id']);
         });
     }
 
@@ -30,6 +31,6 @@ class CreateUikitTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('uikit');
+        Schema::dropIfExists('team_user');
     }
 }
