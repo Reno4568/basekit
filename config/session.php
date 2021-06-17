@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('getbasekit.com'),
+    'domain' => env('SESSION_DOMAIN', null),
 
     /*
     |--------------------------------------------------------------------------
