@@ -6,6 +6,7 @@ use App\Http\Controllers\Backsite\RolesController;
 use App\Http\Controllers\Backsite\UsersController;
 
 use App\Http\Controllers\Backsite\Profile\ProfilesController;
+use App\Http\Controllers\Backsite\Workspace\UiKitsController;
 
 use App\Http\Controllers\Frontsite\GateController;
 
@@ -60,6 +61,11 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::get('reset/photo/{id}', [ProfilesController::class, 'reset'])->name('reset.photo.profiles');
     Route::resource('profiles', ProfilesController::class);
     // end profile ------------------------------- //
+
+
+    // ui kit ------------------------------- //
+    Route::resource('ui_kits', UiKitsController::class);
+    // ui kit ------------------------------- //
 
 });
 

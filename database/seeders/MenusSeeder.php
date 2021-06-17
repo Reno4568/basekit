@@ -46,6 +46,12 @@ class MenusSeeder extends Seeder
                 'created_at'    => '2021-03-15 00:00:00',
                 'updated_at'    => '2021-03-15 00:00:00',
             ],
+            [
+                'name'          => 'UI Kits',
+                'information'   => '',
+                'created_at'    => '2021-03-15 00:00:00',
+                'updated_at'    => '2021-03-15 00:00:00',
+            ],
         ];
 
         Menus::insert($menus);

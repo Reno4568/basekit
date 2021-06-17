@@ -155,6 +155,54 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2021-03-15 00:00:00',
                 'updated_at' => '2021-03-15 00:00:00',
             ],
+            [
+                'title'      => 'workspace_access',
+                'menus_id'   => '1',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'ui_kit_access',
+                'menus_id'   => '6',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'ui_kit_table',
+                'menus_id'   => '6',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'ui_kit_create',
+                'menus_id'   => '6',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'ui_kit_edit',
+                'menus_id'   => '6',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'ui_kit_show',
+                'menus_id'   => '6',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'ui_kit_delete',
+                'menus_id'   => '6',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'ui_kit_filter',
+                'menus_id'   => '6',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
         ];
 
         Permission::insert($permissions);

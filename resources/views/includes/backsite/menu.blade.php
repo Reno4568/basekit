@@ -39,6 +39,20 @@
                 </li>
             @endcan
 
+            @can('workspace_access')
+                <li class=" nav-item"><a href="#"><i class="{{ request()->is('backsite/ui_kits') || request()->is('backsite/ui_kits/*') || request()->is('backsite/*/ui_kits') ? 'bx bx-window-alt bx-flashing' : 'bx bx-window-alt' }}"></i><span class="menu-title" data-i18n="Workspace">Workspace</span></a>
+                    <ul class="menu-content">
+                        @can('ui_kit_access')
+                            <li class="{{ request()->is('backsite/ui_kits') || request()->is('backsite/ui_kits/*') || request()->is('backsite/*/ui_kits') || request()->is('backsite/*/ui_kits/*') ? 'active' : '' }} ">
+                                <a class="menu-item" href="{{ route('backsite.ui_kits.index') }}">
+                                    <i></i><span>UI Kits</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+
         </ul>
     </div>
 </div>
