@@ -98,7 +98,8 @@ class LoginWithGoogleController extends Controller
     public function handleGoogleCallback()
     {
         try {
-      
+            dd(Socialite::driver('google')->stateless()->user());
+
             $user = Socialite::driver('google')->user();
        
             $finduser = User::where('google_id', $user->id)->first();
