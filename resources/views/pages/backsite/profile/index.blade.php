@@ -102,7 +102,7 @@
                                             @csrf
 
                                             <div class="row">
-                                                <div class="col-12 col-sm-6">
+                                                <div class="col-12 col-sm-9">
                                                     <div class="form-group">
                                                         <div class="controls">
                                                             <label>Name <code style="color:red;">required</code></label>
@@ -111,15 +111,6 @@
                                                             @if($errors->has('name'))
                                                                 <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
                                                             @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-12 col-sm-3">
-                                                    <div class="form-group">
-                                                        <div class="controls">
-                                                            <label>Mall <code style="color:red;">required</code></label>
-                                                            <input type="text" class="form-control" value="{{$user->mall->name ?? ''}}" readonly>
                                                         </div>
                                                     </div>
                                                 </div>
