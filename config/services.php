@@ -30,10 +30,4 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'google' => [
-        'client_id' => '682620705603-qg9n9vb2jvmfup746qrn9ra26sau3j2u.apps.googleusercontent.com',
-        'client_secret' => 'n7AZdSIPdorfDE_LD4UjkFFC',
-        'redirect' => 'https://getbasekit.com/authorized/google/callback',
-    ],
-
 ];

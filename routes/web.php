@@ -1,7 +1,15 @@
 <?php
 
+use App\Http\Controllers\Backsite\DashboardController;
+use App\Http\Controllers\Backsite\PermissionsController;
+use App\Http\Controllers\Backsite\RolesController;
+use App\Http\Controllers\Backsite\UsersController;
+
+use App\Http\Controllers\Backsite\Profile\ProfilesController;
+
+use App\Http\Controllers\Frontsite\GateController;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginWithGoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +22,47 @@ use App\Http\Controllers\LoginWithGoogleController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::redirect('/', '/login');
+
+// register member
+Route::resource('gates', GateController::class);
+
+Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['auth:sanctum', 'verified']], function () {
+
+    // redirect after log in
+    Route::redirect('/', '/backsite/dashboard');
+
+
+    // dashboard ------------------------------- //
+    Route::resource('dashboard', DashboardController::class);
+    // dashboard ------------------------------- //
+
+
+    // management access ------------------------------- //
+    // Permissions
+    Route::resource('permissions', PermissionsController::class);
+
+    // roles
+    Route::resource('roles', RolesController::class);
+    // end management access ------------------------------- //
+
+
+    // users ------------------------------- //
+    Route::get('filter/users', [UsersController::class, 'filter'])->name('filter.users');
+    Route::resource('users', UsersController::class);
+    // end users ------------------------------- //
+
+
+    // profile ------------------------------- //
+    Route::put('update/account/{id}', [ProfilesController::class, 'update_account'])->name('update.account.profiles');
+    Route::put('update/security/{id}', [ProfilesController::class, 'update_security'])->name('update.security.profiles');
+    Route::put('upload/photo/{id}', [ProfilesController::class, 'upload'])->name('upload.photo.profiles');
+    Route::get('reset/photo/{id}', [ProfilesController::class, 'reset'])->name('reset.photo.profiles');
+    Route::resource('profiles', ProfilesController::class);
+    // end profile ------------------------------- //
+
 });
 
-Route::get('authorized/google', [LoginWithGoogleController::class, 'redirectToGoogle']);
-Route::get('authorized/google/callback', [LoginWithGoogleController::class, 'handleGoogleCallback']);
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
