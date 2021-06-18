@@ -6,6 +6,7 @@ use App\Http\Controllers\Backsite\RolesController;
 use App\Http\Controllers\Backsite\UsersController;
 
 use App\Http\Controllers\Backsite\Profile\ProfilesController;
+use App\Http\Controllers\Backsite\MasterData\CategoryController;
 use App\Http\Controllers\Backsite\Workspace\UiKitsController;
 
 use App\Http\Controllers\Frontsite\GateController;
@@ -62,6 +63,9 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     Route::resource('profiles', ProfilesController::class);
     // end profile ------------------------------- //
 
+    // category ------------------------------- //
+    Route::resource('categories', CategoryController::class);
+    // category ------------------------------- //
 
     // ui kit ------------------------------- //
     Route::resource('ui_kits', UiKitsController::class);

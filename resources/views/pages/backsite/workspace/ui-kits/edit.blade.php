@@ -74,10 +74,17 @@
 
                                                     <h4 class="form-section"><i class="fa fa-edit"></i> Form UI Kits</h4>
 
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="id_category">Id Category <code style="color:red;">required</code></label>
+                                                    <div class="form-group row {{ $errors->has('id_category') ? 'has-error' : '' }}">
+                                                        <label class="col-md-3 label-control">Category <code style="color:red;">required</code></label>
                                                         <div class="col-md-9 mx-auto">
-                                                            <input type="number" id="id_category" name="id_category" class="form-control" placeholder="example input only numeric" value="{{ old('id_category', isset($ui_kit) ? $ui_kit->id_category : '') }}" autocomplete="off" required>
+                                                            <select name="id_category" 
+                                                                    id="id_category" 
+                                                                    class="form-control select2" required>
+                                                                    <option value="{{ '' }}" disabled selected>Choose</option>
+                                                                @foreach($category as $key => $item_category)
+                                                                    <option value="{{ $item_category->id }}" {{ $ui_kit->id_category == $item_category->id ? 'selected' : '' }}>{{ $item_category->name }}</option>
+                                                                @endforeach
+                                                            </select>
 
                                                             @if($errors->has('id_category'))
                                                                 <p style="font-style: bold; color: red;">{{ $errors->first('id_category') }}</p>

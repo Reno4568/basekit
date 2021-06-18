@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models\Workspace;
+namespace App\Models\MasterData;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class UiKits extends Model
+class Category extends Model
 {
     // use HasFactory;
     use SoftDeletes;
 
-    public $table = 'ui_kits';
+    public $table = 'category';
     public $timestamps = true;
 
     protected $dates = [
@@ -22,17 +22,14 @@ class UiKits extends Model
 
     protected $fillable = [
         'name',
-        'id_category',
-        'thumbnail',
-        'url_file',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
-    // one to many
-    public function category()
+    // one to many --- //
+    public function ui_kits()
     {
-        return $this->belongsTo('App\Models\MasterData\Category', 'id_category', 'id');
+        return $this->hasMany('App\Models\Workspace\UiKits', 'id_category');
     }
 }

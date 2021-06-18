@@ -39,6 +39,20 @@
                 </li>
             @endcan
 
+            @can('master_data_access')
+                <li class=" nav-item"><a href="#"><i class="{{ request()->is('backsite/categories') || request()->is('backsite/categories/*') || request()->is('backsite/*/categories') ? 'bx bx-unite bx-flashing' : 'bx bx-unite' }}"></i><span class="menu-title" data-i18n="Master Data">Master Data</span></a>
+                    <ul class="menu-content">
+                        @can('category_access')
+                            <li class="{{ request()->is('backsite/categories') || request()->is('backsite/categories/*') || request()->is('backsite/*/categories') || request()->is('backsite/*/categories/*') ? 'active' : '' }} ">
+                                <a class="menu-item" href="{{ route('backsite.categories.index') }}">
+                                    <i></i><span>Category</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+
             @can('workspace_access')
                 <li class=" nav-item"><a href="#"><i class="{{ request()->is('backsite/ui_kits') || request()->is('backsite/ui_kits/*') || request()->is('backsite/*/ui_kits') ? 'bx bx-window-alt bx-flashing' : 'bx bx-window-alt' }}"></i><span class="menu-title" data-i18n="Workspace">Workspace</span></a>
                     <ul class="menu-content">

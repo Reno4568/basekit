@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Backsite\Workspace;
+namespace App\Http\Requests\Backsite\Workspace\UiKits;
 
-use App\Models\Workspace\UiKits;
+use App\Models\Workspace\UiKits\UiKits;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
-class UpdateUiKitsRequest extends FormRequest
+class StoreUiKitsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +16,7 @@ class UpdateUiKitsRequest extends FormRequest
      */
     public function authorize()
     {
-        abort_if(Gate::denies('ui_kit_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('ui_kit_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
@@ -36,7 +36,7 @@ class UpdateUiKitsRequest extends FormRequest
                 'required', 'integer',
             ],
             'thumbnail' => [
-                'nullable', 'mimes:jpeg,svg,png', 'max:5000',
+                'required', 'mimes:jpeg,svg,png', 'max:5000',
             ],
             'url_file' => [
                 'required', 'string', 'max:5000',

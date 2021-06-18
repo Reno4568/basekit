@@ -1,7 +1,7 @@
 <table class="table table-bordered">
     <tr>
         <th>Id Category</th>
-        <td>{{ isset($ui_kit->id_category) ? $ui_kit->id_category : 'N/A' }}</td>
+        <td>{{ isset($ui_kit->category->name) ? $ui_kit->category->name : 'N/A' }}</td>
     </tr>
     <tr>
         <th>Name</th>
@@ -25,7 +25,7 @@
         </td>
     </tr>
     <tr>
-        <th>Name</th>
+        <th>URL File</th>
         <td><a href="{{ $ui_kit->url_file ?? '#' }}" target="_blank" rel="noopener noreferrer">URL File</a></td>
     </tr>
 </table>

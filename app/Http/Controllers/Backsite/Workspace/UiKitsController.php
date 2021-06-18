@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Backsite\Workspace;
 
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\Backsite\Workspace\StoreUiKitsRequest;
-use App\Http\Requests\Backsite\Workspace\UpdateUiKitsRequest;
+use App\Http\Requests\Backsite\Workspace\UiKits\StoreUiKitsRequest;
+use App\Http\Requests\Backsite\Workspace\UiKits\UpdateUiKitsRequest;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -17,6 +17,7 @@ use Gate;
 use File;
 
 use App\Models\Workspace\UiKits;
+use App\Models\MasterData\Category;
 
 use Ramsey\Uuid\Uuid;
 
@@ -42,8 +43,9 @@ class UiKitsController extends Controller
         abort_if(Gate::denies('ui_kit_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $ui_kits = UiKits::orderBy('created_at', 'desc')->paginate(500);
+        $category = Category::orderBy('name', 'asc')->get();
 
-        return view('pages.backsite.workspace.ui-kits.index', compact('ui_kits'));
+        return view('pages.backsite.workspace.ui-kits.index', compact('ui_kits', 'category'));
     }
 
     /**
@@ -105,7 +107,9 @@ class UiKitsController extends Controller
     {
         abort_if(Gate::denies('ui_kit_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('pages.backsite.workspace.ui-kits.edit', compact('ui_kit'));
+        $category = Category::orderBy('name', 'asc')->get();
+
+        return view('pages.backsite.workspace.ui-kits.edit', compact('ui_kit', 'category'));
     }
 
     /**

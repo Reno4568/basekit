@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 {{-- set title --}}
-@section('title', 'UI Kits')
+@section('title', 'Category')
 
 @section('content')
 
@@ -28,12 +28,12 @@
             {{-- breadcumb --}}
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2 breadcrumb-new">
-                    <h3 class="content-header-title mb-0 d-inline-block">UI Kits</h3>
+                    <h3 class="content-header-title mb-0 d-inline-block">Category</h3>
                     <div class="row breadcrumbs-top d-inline-block">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ route('backsite.dashboard.index') }}">Dashboard</a></li>
-                                <li class="breadcrumb-item active">UI Kits</li>
+                                <li class="breadcrumb-item active">Category</li>
                             </ol>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
             </div>
 
             {{-- add card --}}
-            @can('ui_kit_create')
+            @can('category_create')
                 <div class="content-body">
                     <section id="add-home">
                         <div class="row">
@@ -64,31 +64,13 @@
                                     <div class="card-content collapse hide">
                                         <div class="card-body card-dashboard">
                                             
-                                            <form class="form form-horizontal" action="{{ route('backsite.ui_kits.store') }}" method="POST" enctype="multipart/form-data">
+                                            <form class="form form-horizontal" action="{{ route('backsite.categories.store') }}" method="POST" enctype="multipart/form-data">
 
                                                 @csrf
 
                                                 <div class="form-body">
                                                     <div class="form-section">
                                                         <p>Please complete the input <code>required</code>, before you click the submit button.</p>
-                                                    </div>
-                                                    
-                                                    <div class="form-group row {{ $errors->has('id_category') ? 'has-error' : '' }}">
-                                                        <label class="col-md-3 label-control">Category <code style="color:red;">required</code></label>
-                                                        <div class="col-md-9 mx-auto">
-                                                            <select name="id_category" 
-                                                                    id="id_category" 
-                                                                    class="form-control select2" required>
-                                                                    <option value="{{ '' }}" disabled selected>Choose</option>
-                                                                @foreach($category as $key => $item_category)
-                                                                    <option value="{{ $item_category->id }}">{{ $item_category->name }}</option>
-                                                                @endforeach
-                                                            </select>
-
-                                                            @if($errors->has('id_category'))
-                                                                <p style="font-style: bold; color: red;">{{ $errors->first('id_category') }}</p>
-                                                            @endif
-                                                        </div>
                                                     </div>
 
                                                     <div class="form-group row">
@@ -98,36 +80,6 @@
 
                                                             @if($errors->has('name'))
                                                                 <p style="font-style: bold; color: red;">{{ $errors->first('name') }}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="thumbnail">Thumbnail <code style="color:red;">required</code></label>
-                                                        <div class="col-md-9 mx-auto">
-                                                            <div class="custom-file">
-                                                                <input type="file" accept="image/x-png,image/svg,image/jpeg" class="custom-file-input" id="thumbnail" name="thumbnail" required>
-                                                                <label class="custom-file-label" for="thumbnail" aria-describedby="thumbnail">Choose File</label>
-                                                            </div>
-                                                            
-                                                            <p class="text-muted"><small class="text-danger">Can only upload one file. </small><small>Files that can be used are JPEG, SVG & PNG. The maximum file size is only 5 MegaBytes.</small></p>
-
-                                                            <div id="image-holder"> </div>
-    
-                                                            @if($errors->has('thumbnail'))
-                                                                <p style="font-style: bold; color: red;">{{ $errors->first('thumbnail') }}</p>
-                                                            @endif
-    
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group row">
-                                                        <label class="col-md-3 label-control" for="url_file">URL File <code style="color:red;">required</code></label>
-                                                        <div class="col-md-9 mx-auto">
-                                                            <input type="url" id="url_file" name="url_file" class="form-control" placeholder="example url your file" value="{{old('url_file')}}" autocomplete="off" required>
-
-                                                            @if($errors->has('url_file'))
-                                                                <p style="font-style: bold; color: red;">{{ $errors->first('url_file') }}</p>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -152,7 +104,7 @@
             @endcan
 
             {{-- table card --}}
-            @can('ui_kit_table')
+            @can('category_table')
                 <div class="content-body">
                     <section id="table-home">
                         <!-- Zero configuration table -->
@@ -160,7 +112,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">UI Kits List</h4>
+                                        <h4 class="card-title">Category List</h4>
                                         <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                         <div class="heading-elements">
                                             <ul class="list-inline mb-0">
@@ -179,56 +131,37 @@
                                                     <thead>
                                                         <tr>
                                                             <th>Date</th>
-                                                            <th>Id Category</th>
-                                                            <th>Thumbnail</th>
                                                             <th>Name</th>
-                                                            <th>URL File</th>
                                                             <th style="text-align:center; width:150px;">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        @forelse($ui_kits as $key => $ui_kit)
-                                                            <tr data-entry-id="{{ $ui_kit->id }}">
-                                                                <td>{{ date("d/m/Y H:i:s",strtotime($ui_kit->created_at)) ?? '' }}</td>
-                                                                <td>{{ $ui_kit->category->name ?? '' }}</td>
-                                                                <td>
-                                                                    <img src="
-                                                                        @if ($ui_kit->thumbnail != "") 
-                                                                            @if(File::exists('storage/'.$ui_kit->thumbnail))
-                                                                                {{ url(Storage::url($ui_kit->thumbnail)) }}
-                                                                            @else
-                                                                                {{-- {{ url(Storage::url('app/public/'.$ui_kit->image)) }} --}}
-                                                                                {{ asset('/back-design/clients/default/image-not-found.svg') }}
-                                                                            @endif
-                                                                        @else
-                                                                            {{ asset('/back-design/clients/default/image-not-found.svg') }}
-                                                                        @endif "
-                                                                        alt="thumbnail" class="users-avatar-shadow" height="100" width="100">
-                                                                </td>
-                                                                <td>{{ $ui_kit->name ?? '' }}</td>
-                                                                <td><a href="{{ $ui_kit->url_file ?? '#' }}" target="_blank" rel="noopener noreferrer">URL File</a></td>
+                                                        @forelse($categories as $key => $category)
+                                                            <tr data-entry-id="{{ $category->id }}">
+                                                                <td>{{ date("d/m/Y H:i:s",strtotime($category->created_at)) ?? '' }}</td>
+                                                                <td>{{ $category->name ?? '' }}</td>
                                                                 <td class="text-center">
 
                                                                     <div class="btn-group mr-1 mb-1">
                                                                         <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action</button>
                                                                         <div class="dropdown-menu">
-                                                                            @can('ui_kit_show')
+                                                                            @can('category_show')
                                                                                 <a href="#mymodal" 
-                                                                                    data-remote="{{ route('backsite.ui_kits.show', $ui_kit->id) }}" 
+                                                                                    data-remote="{{ route('backsite.categories.show', $category->id) }}" 
                                                                                     data-toggle="modal" 
                                                                                     data-target="#mymodal" 
-                                                                                    data-title="UI Kits Detail" 
+                                                                                    data-title="Category Detail" 
                                                                                     class="dropdown-item">
                                                                                     Show
                                                                                 </a>
                                                                             @endcan
-                                                                            @can('ui_kit_edit')
-                                                                                <a class="dropdown-item" href="{{ route('backsite.ui_kits.edit', $ui_kit->id) }}">
+                                                                            @can('category_edit')
+                                                                                <a class="dropdown-item" href="{{ route('backsite.categories.edit', $category->id) }}">
                                                                                     Edit
                                                                                 </a>
                                                                             @endcan
-                                                                            @can('ui_kit_delete')
-                                                                                <form action="{{ route('backsite.ui_kits.destroy', $ui_kit->id) }}" method="POST" onsubmit="return confirm('Are you sure want to delete this data ?');">
+                                                                            @can('category_delete')
+                                                                                <form action="{{ route('backsite.categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Are you sure want to delete this data ?');">
                                                                                     <input type="hidden" name="_method" value="DELETE">
                                                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                                                     <input type="submit" class="dropdown-item" value="Delete">
@@ -246,10 +179,7 @@
                                                     <tfoot>
                                                         <tr>
                                                             <th>Date</th>
-                                                            <th>Id Category</th>
-                                                            <th>Thumbnail</th>
                                                             <th>Name</th>
-                                                            <th>URL File</th>
                                                             <th style="text-align:center; width:150px;">Action</th>
                                                         </tr>
                                                     </tfoot>
@@ -260,16 +190,16 @@
 
                                             <div class="table-responsive">
                                                 <div class="text-center mb-3">
-                                                    @if ($ui_kits->hasPages())
+                                                    @if ($categories->hasPages())
                                                         <h4 class="card-title">Pagination Page</h4>
-                                                        <p class="mt-1"><code class="text-dark">Page {{ $ui_kits->currentPage() }}</code> & <code>All data {{ $ui_kits->total() }}</code></p>
+                                                        <p class="mt-1"><code class="text-dark">Page {{ $categories->currentPage() }}</code> & <code>All data {{ $categories->total() }}</code></p>
                                                     @endif
                                                     <nav aria-label="Page navigation">
-                                                        @if ($ui_kits->hasPages())
+                                                        @if ($categories->hasPages())
                                                             <ul class="pagination justify-content-center pagination-round">
 
                                                                 {{-- Previous Page Link --}}
-                                                                @if ($ui_kits->onFirstPage())
+                                                                @if ($categories->onFirstPage())
                                                                     <li class="page-item disabled">
                                                                         <a class="page-link" href="#" aria-label="Previous">
                                                                             <span aria-hidden="true"><i class="ft-chevron-left"></i></span>
@@ -278,43 +208,43 @@
                                                                     </li>
                                                                 @else
                                                                     <li class="page-item">
-                                                                        <a class="page-link" href="{{ $ui_kits->previousPageUrl() }}" aria-label="Previous">
+                                                                        <a class="page-link" href="{{ $categories->previousPageUrl() }}" aria-label="Previous">
                                                                             <span aria-hidden="true"><i class="ft-chevron-left"></i></span>
                                                                             <span class="sr-only"><i class="ft-chevron-left"></i></span>
                                                                         </a>
                                                                     </li>
                                                                 @endif
 
-                                                                @if($ui_kits->currentPage() > 2)
-                                                                    <li class="page-item"><a class="page-link" href="{{ $ui_kits->url(1) }}">1</a></li>
+                                                                @if($categories->currentPage() > 2)
+                                                                    <li class="page-item"><a class="page-link" href="{{ $categories->url(1) }}">1</a></li>
                                                                 @endif
 
-                                                                @if($ui_kits->currentPage() > 3)
+                                                                @if($categories->currentPage() > 3)
                                                                     <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
                                                                 @endif
 
-                                                                @foreach(range(1, $ui_kits->lastPage()) as $i)
-                                                                    @if($i >= $ui_kits->currentPage() - 1 && $i <= $ui_kits->currentPage() + 1)
-                                                                        @if ($i == $ui_kits->currentPage())
+                                                                @foreach(range(1, $categories->lastPage()) as $i)
+                                                                    @if($i >= $categories->currentPage() - 1 && $i <= $categories->currentPage() + 1)
+                                                                        @if ($i == $categories->currentPage())
                                                                             <li class="page-item active"><span class="page-link">{{ $i }}</span></li>
                                                                         @else
-                                                                            <li class="page-item"><a class="page-link" href="{{ $ui_kits->url($i) }}">{{ $i }}</a></li>
+                                                                            <li class="page-item"><a class="page-link" href="{{ $categories->url($i) }}">{{ $i }}</a></li>
                                                                         @endif
                                                                     @endif
                                                                 @endforeach
 
-                                                                @if($ui_kits->currentPage() < $ui_kits->lastPage() - 3)
+                                                                @if($categories->currentPage() < $categories->lastPage() - 3)
                                                                     <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
                                                                 @endif
 
-                                                                @if($ui_kits->currentPage() < $ui_kits->lastPage() - 2)
-                                                                    <li class="page-item"><a class="page-link" href="{{ $ui_kits->url($ui_kits->lastPage()) }}">{{ $ui_kits->lastPage() }}</a></li>
+                                                                @if($categories->currentPage() < $categories->lastPage() - 2)
+                                                                    <li class="page-item"><a class="page-link" href="{{ $categories->url($categories->lastPage()) }}">{{ $categories->lastPage() }}</a></li>
                                                                 @endif
 
                                                                 {{-- Next Page Link --}}
-                                                                @if ($ui_kits->hasMorePages())
+                                                                @if ($categories->hasMorePages())
                                                                     <li class="page-item">
-                                                                        <a class="page-link" href="{{ $ui_kits->nextPageUrl() }}" aria-label="Next">
+                                                                        <a class="page-link" href="{{ $categories->nextPageUrl() }}" aria-label="Next">
                                                                             <span aria-hidden="true"><i class="ft-chevron-right"></i></span>
                                                                             <span class="sr-only"><i class="ft-chevron-right"></i></span>
                                                                         </a>
@@ -363,39 +293,11 @@
             });
         });
 
-        var uploadField = document.getElementById("thumbnail");
-
-        uploadField.onchange = function() {
-            if(this.files[0].size > 5100000){
-                alert("Your file is too big, the maximum file size is only 5 megabytes");
-                this.value = "";
-            };
-        };
-
         $('.default-table').DataTable( {
             "order": [],
             "paging": true,
             "lengthMenu": [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"] ],
             "pageLength": 5
-        });
-
-        $("#thumbnail").on('change', function () {
-            if (typeof (FileReader) != "undefined") {
-                var image_holder = $("#image-holder");
-                image_holder.empty();
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $("<img />", {
-                    "style": "height:100px; width:100px; object-fit:cover;",
-                        "src": e.target.result,
-                        "class": "users-avatar-shadow rounded mt-25"
-                    }).appendTo(image_holder);
-                }
-                image_holder.show();
-                reader.readAsDataURL($(this)[0].files[0]);
-            } else {
-                alert("This browser does not support File Reader.");
-            }
         });
     </script>
 
