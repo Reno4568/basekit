@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/login');
+Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'index'])->name('index.home');
 Route::get('/details/{id}', [HomeController::class, 'details'])->name('index.details');
 
