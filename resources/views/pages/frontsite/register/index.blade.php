@@ -29,30 +29,30 @@
 
                         <!-- Info -->
                         <div class="mt-2 mb-5">
-                            <h2>Thousands of experts around the world ready to help you.</h2>
-                            <p>See why leading organizations choose Front Course for Business as their destination for employee learning.</p>
+                            <h2>We help Flutter Developer to work faster and better.</h2>
+                            <p>Our products are ready to use for your existing or next project, and easy to customize.</p>
                         </div>
         
-                        <h4>Learn more about:</h4>
+                        <h4 class="mb-3">Why we might fit for you:</h4>
             
                         <div class="media text-body mb-3">
                             <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
                             <div class="media-body">
-                            Unlimited access to the top 3,500+ courses
+                            High-quality design with better experience.
                             </div>
                         </div>
 
                         <div class="media text-body mb-3">
                             <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
                             <div class="media-body">
-                            Fresh content taught by 1,300+ experts – for any learning style
+                            Full documentation and ready to use.
                             </div>
                         </div>
 
                         <div class="media text-body mb-3">
                             <i class="fas fa-check-circle text-success mt-1 mr-2"></i>
                             <div class="media-body">
-                            Actionable learning insights <span class="badge badge-warning badge-pill ml-1">Beta</span>
+                            We provide a private consultation group.
                             </div>
                         </div>
                         <!-- End Info -->
