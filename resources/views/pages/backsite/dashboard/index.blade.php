@@ -25,7 +25,39 @@
             {{-- breadcumb --}}
 
             <div class="content-body">
-                
+                @if(Auth::user()->email == 'admin@mail.com')
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 text-center">
+                        <h1>
+                            Let's Help Developer
+                        </h1>
+                        <p>
+                            Tambahkan produk terbaru yang dapat digunakan oleh Flutter Developer di seluruh dunia.
+                        </p>
+                        <p>
+                            <a href="{{ url('/backsite/ui_kits') }}" class="btn btn-success">
+                                Add Product
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                @else
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 text-center">
+                        <h1>
+                            Work Faster & Better
+                        </h1>
+                        <p>
+                            Gunakan projek Flutter yang telah kami siapkan untuk projek terbaikmu.
+                        </p>
+                        <p>
+                            <a href="{{ url('/home') }}" class="btn btn-success">
+                                View Products
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                @endif
             </div>
 
         </div>
