@@ -58,13 +58,28 @@
                 </div>
             </div>
             <div class="row mt-5">
-                <div class="col-lg-5">
+                <div class="col-lg-7">
                     <img src="{{ Storage::url($details_product->thumbnail) }}" alt="" class="img-fluid">
                 </div>
                 <div class="col-lg-5">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                    <img src="{{ asset('images/ic_flutter.png') }}" alt="" class="img-fluid" width="45">
+                          <h5 class="card-title mt-5">Improve Your Work</h5>
+                          <p class="card-text mb-5">Tingkatkan kinerjamu sebagai Developer dengan projek Flutter buatan kami.</p>
+                          @if(isset(Auth::user()->id))
                     <a href="{{ $details_product->url_file }}" target="_blank" class="btn btn-success">
                         Download Now
                     </a>
+                    @else
+                    <a href="{{ url('/login') }}" class="btn btn-light">
+                        Sign In to Download
+                    </a>
+                    @endif
+                        </div>
+                      </div>
+                    <br>
+                    
                 </div>
             </div>
         </div>
