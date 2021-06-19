@@ -49,9 +49,16 @@
                           <h5 class="card-title mt-5">{{ $total_downloaded }} Downloaded</h5>
                           <p class="card-text mb-5">Tingkatkan kinerjamu sebagai Developer dengan projek Flutter buatan kami.</p>
                           @if(isset(Auth::user()->id))
-                    <a target="_blank" href="{{ config('app.class_url').'/download_product/'.$details_product->id }}" class="btn btn-success">
-                        Download Now
-                    </a>
+                    <p>
+                        <a target="_blank" href="{{ config('app.class_url').'/download_product/'.$details_product->id }}" class="btn btn-success">
+                            Download Now
+                        </a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://join.slack.com/t/getbasekit/shared_invite/zt-ruqtiq2e-eAxc4ZSwoFyBmA9~0lPY4w" class="btn btn-light">
+                            Join Grup Konsultasi
+                        </a>
+                    </p>
                     @else
                     <a href="{{ url('/login') }}" class="btn btn-light">
                         Sign In to Download
