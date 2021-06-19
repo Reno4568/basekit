@@ -22,7 +22,7 @@
             <div class="container position-relative space-top-2 space-top-md-0 space-top-lg-3 space-bottom-2 space-bottom-md-3 space-bottom-xl-5">
                 <div class="row position-relative z-index-2 mt-md-n5">
                     <div class="col-md-8 mb-7 mb-md-0">
-                        <a class="navbar-brand"><img style="width: 70px;" class="brand-logo" alt="Buildwith Angga Logo" src="{{ asset('back-design/clients/img/logo.png') }}"></a>
+
 
                         <!-- Title -->
                         <div class="w-md-75 mb-7 mt-2">

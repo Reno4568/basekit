@@ -23,7 +23,7 @@
             <div class="container space-1 space-lg-1">
                 <div class="row justify-content-lg-between align-items-lg-center">
                     <div class="col-lg-5 mb-7 mb-lg-0">
-                        <a class="navbar-brand"><img style="width: 70px;" class="brand-logo" alt="Buildwith Angga Logo" src="{{ asset('back-design/clients/img/logo.png') }}"></a>
+                        
 
                         <hr>
 
