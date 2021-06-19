@@ -49,7 +49,7 @@
                           <h5 class="card-title mt-5">Improve Your Work</h5>
                           <p class="card-text mb-5">Tingkatkan kinerjamu sebagai Developer dengan projek Flutter buatan kami.</p>
                           @if(isset(Auth::user()->id))
-                    <a href="{{ $details_product->url_file }}" target="_blank" class="btn btn-success">
+                    <a target="_blank" href="{{ config('app.class_url').'/download_product/'.$details_product->id }}" class="btn btn-success">
                         Download Now
                     </a>
                     @else

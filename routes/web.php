@@ -9,8 +9,10 @@ use App\Http\Controllers\Backsite\Profile\ProfilesController;
 use App\Http\Controllers\Backsite\MasterData\CategoryController;
 use App\Http\Controllers\Backsite\Workspace\UiKitsController;
 
+
 use App\Http\Controllers\Frontsite\GateController;
 use App\Http\Controllers\Frontsite\HomeController;
+use App\Http\Controllers\Frontsite\ProductsDownloadedController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -29,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'index'])->name('index.home');
 Route::get('/details/{id}', [HomeController::class, 'details'])->name('index.details');
+Route::get('/download_product/{id}', [ProductsDownloadedController::class, 'store'])->name('download_product');
 
 // register member
 Route::resource('gates', GateController::class);
