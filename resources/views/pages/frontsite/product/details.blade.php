@@ -34,7 +34,10 @@
                         {{ $details_product->name }}
                     </h2>
                     <p>
-                        Designed & Developed by BaseKit Team.
+                        @php
+                            $category_name = \App\Models\MasterData\Category::where('id', $details_product->id_category)->first(); 
+                        @endphp 
+                        Category: {{ $category_name->name }}
                     </p>
                 </div>
             </div>

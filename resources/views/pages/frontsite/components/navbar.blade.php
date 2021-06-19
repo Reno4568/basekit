@@ -17,11 +17,13 @@
               Categories
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Health</a></li>
-              <li><a class="dropdown-item" href="#">Education</a></li>
-              <li><a class="dropdown-item" href="#">Finance</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Request Design</a></li>
+                @php
+                            $categories = \App\Models\MasterData\Category::all(); 
+                @endphp 
+                @forelse($categories as $category)
+              <li><a class="dropdown-item" href="{{ config('app.class_url').'/category/'.$category->id }}">{{ $category->name }}</a></li>
+              @empty
+              @endforelse
             </ul>
           </li>
           @if(isset(Auth::user()->id))

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontsite;
 
 use App\Models\Workspace\UiKits;
+use App\Models\MasterData\Category;
 use App\Models\Workspace\ProductsDownloaded;
 
 use App\Http\Controllers\Controller;
@@ -30,5 +31,19 @@ class HomeController extends Controller
         }
         
         return view('pages.frontsite.product.details', compact('details_product', 'total_downloaded'));
+    }
+
+    public function category($id){
+        //
+        
+        $all_products = UiKits::where('id_category', '=', $id)->get();
+        $category = Category::where('id', '=', $id)->first();
+        $category_name = $category->name;
+
+        if(!$all_products) {
+            abort(404);
+        }
+        
+        return view('pages.frontsite.product.category', compact('all_products', 'category_name'));
     }
 }
