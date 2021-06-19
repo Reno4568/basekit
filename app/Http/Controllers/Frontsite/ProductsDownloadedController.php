@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontsite;
 use App\Http\Controllers\Controller;
 use App\Models\Workspace\UiKits;
 use App\Models\Workspace\ProductsDownloaded;
+use Carbon\Carbon;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,13 @@ class ProductsDownloadedController extends Controller
             $id_user = Auth::user()->id;
 
             if(!$id_user) {
-                return redirect('/gate');
+                return redirect('/login');
+            }
+
+            $check_daily_user = ProductsDownloaded::where('id_user', '=', $id_user)->whereDate('created_at', Carbon::today())->count();
+            if($check_daily_user >= 2)
+            {
+                return redirect('/oops');
             }
 
             $product = UiKits::where('id', '=', $id)->first();

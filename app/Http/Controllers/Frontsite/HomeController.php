@@ -20,6 +20,11 @@ class HomeController extends Controller
         return view('pages.frontsite.product.index', compact('ui_kits'));
     }
 
+    public function oops()
+    {
+        return view('pages.frontsite.product.oops');
+    }
+
     public function details($id){
         //
         

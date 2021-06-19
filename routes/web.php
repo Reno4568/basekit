@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'index'])->name('index.home');
+Route::get('/oops', [HomeController::class, 'oops'])->name('index.oops');
 Route::get('/details/{id}', [HomeController::class, 'details'])->name('index.details');
 Route::get('/category/{id}', [HomeController::class, 'category'])->name('index.category');
 Route::get('/download_product/{id}', [ProductsDownloadedController::class, 'store'])->name('download_product');
