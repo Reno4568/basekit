@@ -46,7 +46,7 @@
                 <div class="col-lg-3">
                     <div class="card">
                       <div class="card-body">
-                        <h5 class="card-title">Free Trial 14-Days</h5>
+                        <h5 class="card-title">Free Trial 3-Days</h5>
                         <p class="card-text">Get an access to our thousands UI for your future project.</p>
                         <a href="#" class="btn btn-light">Start Trial</a>
                       </div>
