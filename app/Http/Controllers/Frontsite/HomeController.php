@@ -6,9 +6,11 @@ use App\Models\Workspace\UiKits;
 use App\Models\MasterData\Category;
 use App\Models\Workspace\SubscribePackages;
 use App\Models\Workspace\ProductsDownloaded;
+use App\Models\Workspace\SubscribeTransactions;
 
 use App\Http\Controllers\Controller;
-
+use Carbon\Carbon;
+use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,9 +28,48 @@ class HomeController extends Controller
         return view('pages.frontsite.product.oops');
     }
 
+    public function ended()
+    {
+        return view('pages.frontsite.product.ended');
+    }
+
+    public function checkout($type)
+    {
+        return view('pages.frontsite.product.checkout', compact('type'));
+    }
+
+    public function pay($type)
+    {
+        $id_user = Auth::user()->id;
+
+        if($type == 'trial')
+        {
+            $check_trial = SubscribeTransactions::where('id_user', '=', $id_user)->first();
+            if(!$check_trial)
+            {
+                $data = array(
+                    'id_package' => 0,
+                    'id_user' => $id_user,
+                    'total_price' => 0,
+                    'status' => 'success',
+                    'type' => $type,
+                    'expired_at' => Carbon::now()->addDays(3),
+                );
+                $my_trial = SubscribeTransactions::firstOrCreate($data);
+            }
+            else {
+                return redirect()->route('index.ended');
+            }
+        }
+        return view('pages.frontsite.product.checkout', compact('type'));
+    }
+
     public function pricing()
     {
+        
+        
         $all_packages = SubscribePackages::all();
+        
         
         return view('pages.frontsite.product.pricing', compact('all_packages'));
     }

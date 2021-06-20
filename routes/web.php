@@ -33,9 +33,12 @@ Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'index'])->name('index.home');
 Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 Route::get('/oops', [HomeController::class, 'oops'])->name('index.oops');
+Route::get('/trial/ended', [HomeController::class, 'ended'])->name('index.ended')->middleware(['auth']);
 Route::get('/details/{id}', [HomeController::class, 'details'])->name('index.details');
 Route::get('/category/{id}', [HomeController::class, 'category'])->name('index.category');
 Route::get('/download_product/{id}', [ProductsDownloadedController::class, 'store'])->name('download_product');
+Route::get('/checkout/{type}', [HomeController::class, 'checkout'])->name('checkout')->middleware(['auth']);
+Route::get('/checkout/pay/{type}', [HomeController::class, 'pay'])->name('pay')->middleware(['auth']);
 
 // register member
 Route::resource('gates', GateController::class);
@@ -45,7 +48,7 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
     // redirect after log in
     Route::redirect('/', '/backsite/dashboard');
 
-
+    
     // dashboard ------------------------------- //
     Route::resource('dashboard', DashboardController::class);
     // dashboard ------------------------------- //

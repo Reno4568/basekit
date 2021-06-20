@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Frontsite;
 use App\Http\Controllers\Controller;
 use App\Models\Workspace\UiKits;
+use App\Models\Workspace\SubscribeTransactions;
 use App\Models\Workspace\ProductsDownloaded;
 use Carbon\Carbon;
 use Auth;
@@ -45,6 +46,13 @@ class ProductsDownloadedController extends Controller
 
             if(!$id_user) {
                 return redirect('/login');
+            }
+
+            $check_trial = SubscribeTransactions::where('id_user', '=', $id_user)->first();
+
+            if(!$check_trial)
+            {
+                return redirect('/pricing');
             }
 
             $check_daily_user = ProductsDownloaded::where('id_user', '=', $id_user)->whereDate('created_at', Carbon::today())->count();

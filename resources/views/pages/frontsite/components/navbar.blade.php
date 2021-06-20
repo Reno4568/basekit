@@ -30,6 +30,24 @@
           <li class="nav-item">
             <a class="btn btn-success" href="{{ url('/backsite/dashboard') }}">My Dashboard</a>
           </li>
+          @auth
+                  @php
+                  $id_user = Auth::user()->id;
+                  $check_trial = \App\Models\Workspace\SubscribeTransactions::where('id_user', '=', $id_user)->first();
+                  
+                  @endphp
+                  @if($check_trial)
+                  @php
+                  $left_days = \Carbon\Carbon::parse($check_trial->expired_at)->diffInDays(\Carbon\Carbon::now());
+                  @endphp
+                  <li class="nav-item ms-3">
+                    <a class="btn btn-danger" href="#">Trial Mode ({{ $left_days }} Days)</a>
+                  </li>
+                  @else
+                  @endif
+                  @endauth
+                  @guest
+                  @endguest
           @else
           <li class="nav-item">
             <a class="btn btn-success" href="{{ url('/gates') }}">Sign Up</a>

@@ -43,15 +43,35 @@
       <section class="py-5">
           <div class="container">
               <div class="row">
-                <div class="col-lg-3">
+                  @auth
+                  @php
+                  $id_user = Auth::user()->id;
+                  $check_trial = \App\Models\Workspace\SubscribeTransactions::where('id_user', '=', $id_user)->first();
+                  @endphp
+                  @if($check_trial)
+                  @else
+                  <div class="col-lg-3">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Free Trial 3-Days</h5>
+                          <p class="card-text">Get an access to our thousands UI for your future project.</p>
+                          <a href="{{ config('app.class_url').'/checkout/'.'trial' }}" class="btn btn-light">Start Trial</a>
+                        </div>
+                      </div>
+                    </div>
+                    @endif
+                  @endauth
+                  @guest
+                  <div class="col-lg-3">
                     <div class="card">
                       <div class="card-body">
                         <h5 class="card-title">Free Trial 3-Days</h5>
                         <p class="card-text">Get an access to our thousands UI for your future project.</p>
-                        <a href="#" class="btn btn-light">Start Trial</a>
+                        <a href="{{ config('app.class_url').'/checkout/'.'trial' }}" class="btn btn-light">Start Trial</a>
                       </div>
                     </div>
                   </div>
+                  @endguest
                   @forelse($all_packages as $item_package)
                   <div class="col-lg-4">
                     <div class="card">
@@ -59,7 +79,7 @@
                         <h5 class="card-title">{{ $item_package->name }} - {{ $item_package->month_length }} month</h5>
                         <p class="card-text">IDR {{ number_format($item_package->price) }}</p>
                         <p class="card-text">With this package you can unlock all of them and join our community to help each other.</p>
-                        <a href="#" class="btn btn-primary">Subscribe Now</a>
+                        <a href="{{ config('app.class_url').'/checkout/'.'premium' }}" class="btn btn-primary">Subscribe Now</a>
                       </div>
                     </div>
                   </div>
