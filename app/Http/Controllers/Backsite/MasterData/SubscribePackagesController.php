@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Frontsite;
+namespace App\Http\Controllers\Backsite\MasterData;
 
 use App\Models\Workspace\SubscribePackages;
 use Illuminate\Http\Request;
@@ -9,12 +9,24 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
+use Gate;
+use Symfony\Component\HttpFoundation\Response;
 use Carbon\Carbon;
 use Auth;
 
 
 class SubscribePackagesController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -23,9 +35,9 @@ class SubscribePackagesController extends Controller
     public function index()
     {
         //
-        $all_packages = SubscribePackages::all();
-        
-        return view('pages.frontsite.product.pricing', compact('all_packages'));
+        abort_if(Gate::denies('spackages_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $spackages = SubscribePackages::paginate(3);
+        return view('pages.backsite.master-data.spackages.index', 'spackages');
     }
 
     /**

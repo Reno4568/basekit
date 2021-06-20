@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontsite;
 
 use App\Models\Workspace\UiKits;
 use App\Models\MasterData\Category;
+use App\Models\Workspace\SubscribePackages;
 use App\Models\Workspace\ProductsDownloaded;
 
 use App\Http\Controllers\Controller;
@@ -23,6 +24,13 @@ class HomeController extends Controller
     public function oops()
     {
         return view('pages.frontsite.product.oops');
+    }
+
+    public function pricing()
+    {
+        $all_packages = SubscribePackages::all();
+        
+        return view('pages.frontsite.product.pricing', compact('all_packages'));
     }
 
     public function details($id){

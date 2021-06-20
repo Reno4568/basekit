@@ -49,6 +49,13 @@
                                 </a>
                             </li>
                         @endcan
+                        @can('spackages_access')
+                            <li class="{{ request()->is('backsite/spackages') || request()->is('backsite/spackages/*') || request()->is('backsite/*/spackages') || request()->is('backsite/*/spackages/*') ? 'active' : '' }} ">
+                                <a class="menu-item" href="{{ route('backsite.spackages.index') }}">
+                                    <i></i><span>Subscribe Packages</span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             @endcan

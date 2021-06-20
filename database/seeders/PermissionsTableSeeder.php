@@ -245,6 +245,48 @@ class PermissionsTableSeeder extends Seeder
                 'created_at' => '2021-03-15 00:00:00',
                 'updated_at' => '2021-03-15 00:00:00',
             ],
+            [
+                'title'      => 'spackages_access',
+                'menus_id'   => '8',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'spackages_table',
+                'menus_id'   => '8',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'spackages_create',
+                'menus_id'   => '8',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'spackages_edit',
+                'menus_id'   => '8',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'spackages_show',
+                'menus_id'   => '8',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'spackages_delete',
+                'menus_id'   => '8',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
+            [
+                'title'      => 'spackages_filter',
+                'menus_id'   => '8',
+                'created_at' => '2021-03-15 00:00:00',
+                'updated_at' => '2021-03-15 00:00:00',
+            ],
         ];
 
         Permission::insert($permissions);

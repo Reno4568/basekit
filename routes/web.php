@@ -7,12 +7,12 @@ use App\Http\Controllers\Backsite\UsersController;
 
 use App\Http\Controllers\Backsite\Profile\ProfilesController;
 use App\Http\Controllers\Backsite\MasterData\CategoryController;
+use App\Http\Controllers\Backsite\MasterData\SubscribePackagesController;
 use App\Http\Controllers\Backsite\Workspace\UiKitsController;
 
 
 use App\Http\Controllers\Frontsite\GateController;
 use App\Http\Controllers\Frontsite\HomeController;
-use App\Http\Controllers\Frontsite\SubscribePackagesController;
 use App\Http\Controllers\Frontsite\ProductsDownloadedController;
 
 
@@ -31,7 +31,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/home');
 Route::get('/home', [HomeController::class, 'index'])->name('index.home');
-Route::get('/pricing', [SubscribePackagesController::class, 'index'])->name('index');
+Route::get('/pricing', [HomeController::class, 'pricing'])->name('pricing');
 Route::get('/oops', [HomeController::class, 'oops'])->name('index.oops');
 Route::get('/details/{id}', [HomeController::class, 'details'])->name('index.details');
 Route::get('/category/{id}', [HomeController::class, 'category'])->name('index.category');
@@ -76,6 +76,10 @@ Route::group(['prefix' => 'backsite', 'as' => 'backsite.', 'middleware' => ['aut
 
     // category ------------------------------- //
     Route::resource('categories', CategoryController::class);
+    // category ------------------------------- //
+
+    // category ------------------------------- //
+    Route::resource('spackages', SubscribePackagesController::class);
     // category ------------------------------- //
 
     // ui kit ------------------------------- //
