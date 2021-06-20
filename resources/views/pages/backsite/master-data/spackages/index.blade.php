@@ -84,6 +84,28 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="price">Price <code style="color:red;">required</code></label>
+                                                        <div class="col-md-9 mx-auto">
+                                                            <input type="text" id="price" name="price" class="form-control" placeholder="example landing page design or mobile first" value="{{old('price')}}" autocomplete="off" required>
+
+                                                            @if($errors->has('price'))
+                                                                <p style="font-style: bold; color: red;">{{ $errors->first('price') }}</p>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label class="col-md-3 label-control" for="month_length">Month Length <code style="color:red;">required</code></label>
+                                                        <div class="col-md-9 mx-auto">
+                                                            <input type="text" id="month_length" name="month_length" class="form-control" placeholder="example landing page design or mobile first" value="{{old('month_length')}}" autocomplete="off" required>
+
+                                                            @if($errors->has('month_length'))
+                                                                <p style="font-style: bold; color: red;">{{ $errors->first('month_length') }}</p>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
                                                 <div class="form-actions text-right">

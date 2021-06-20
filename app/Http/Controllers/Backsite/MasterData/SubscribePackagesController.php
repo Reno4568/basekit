@@ -37,7 +37,7 @@ class SubscribePackagesController extends Controller
         //
         abort_if(Gate::denies('spackages_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         $spackages = SubscribePackages::paginate(3);
-        return view('pages.backsite.master-data.spackages.index', 'spackages');
+        return view('pages.backsite.master-data.spackages.index', compact('spackages'));
     }
 
     /**
@@ -67,9 +67,12 @@ class SubscribePackagesController extends Controller
      * @param  \App\Models\SubscribePackages  $subscribePackages
      * @return \Illuminate\Http\Response
      */
-    public function show(SubscribePackages $subscribePackages)
+    public function show(SubscribePackages $subscribePackages, $id)
     {
         //
+        abort_if(Gate::denies('spackages_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $spackages = SubscribePackages::where('id', '=', $id)->first();
+        return view('pages.backsite.master-data.spackages.show', compact('spackages'));
     }
 
     /**
@@ -78,9 +81,12 @@ class SubscribePackagesController extends Controller
      * @param  \App\Models\SubscribePackages  $subscribePackages
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubscribePackages $subscribePackages)
+    public function edit(SubscribePackages $subscribePackages, $id)
     {
         //
+        abort_if(Gate::denies('spackages_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $spackages = SubscribePackages::where('id', '=', $id)->first();
+        return view('pages.backsite.master-data.spackages.edit', compact('spackages'));
     }
 
     /**
