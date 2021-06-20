@@ -59,6 +59,13 @@ class SubscribePackagesController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->all();
+
+        $spackage = SubscribePackages::create($data);
+
+        alert()->success('Success Message', 'Save data has been success');
+
+        return redirect()->route('backsite.spackages.index');
     }
 
     /**
