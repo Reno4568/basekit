@@ -56,7 +56,7 @@
                   <div class="col-lg-4">
                     <div class="card">
                       <div class="card-body">
-                        <h5 class="card-title">{{ $item_package->name }}</h5>
+                        <h5 class="card-title">{{ $item_package->name }} - {{ $item_package->month_length }} month</h5>
                         <p class="card-text">With this package you can unlock all of them and join our community to help each other.</p>
                         <a href="#" class="btn btn-primary">Subscribe Now</a>
                       </div>
