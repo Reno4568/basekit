@@ -53,7 +53,7 @@
                           <p class="card-text mb-5">Tingkatkan kinerjamu sebagai Developer dengan projek Flutter buatan kami.</p>
                           @if(isset(Auth::user()->id))
                     <p>
-                        <a target="_blank" href="{{ config('app.class_url').'/download_product/'.$details_product->id }}" class="btn btn-success">
+                        <a href="{{ config('app.class_url').'/download_product/'.$details_product->id }}" class="btn btn-success">
                             Download Now
                         </a>
                     </p>
