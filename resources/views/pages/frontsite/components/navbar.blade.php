@@ -37,12 +37,19 @@
                   
                   @endphp
                   @if($check_trial)
-                  @php
-                  $left_days = \Carbon\Carbon::parse($check_trial->expired_at)->diffInDays(\Carbon\Carbon::now());
-                  @endphp
-                  <li class="nav-item ms-3">
-                    <a class="btn btn-danger" href="#">Trial Mode ({{ $left_days }} Days)</a>
-                  </li>
+                    @php
+                    $left_days = \Carbon\Carbon::parse($check_trial->expired_at)->diffInDays(\Carbon\Carbon::now());
+                    @endphp
+                    
+                    @if($check_trial->expired_at < \Carbon\Carbon::now())
+                    <li class="nav-item ms-3">
+                      <a class="btn btn-light" href="#">Trial Ended</a>
+                    </li>
+                    @else
+                    <li class="nav-item ms-3">
+                      <a class="btn btn-danger" href="#">Trial Mode ({{ $left_days }} Days)</a>
+                    </li>
+                    @endif
                   @else
                   @endif
                   @endauth

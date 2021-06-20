@@ -55,6 +55,10 @@ class ProductsDownloadedController extends Controller
                 return redirect('/pricing');
             }
 
+            if($check_trial->expired_at < Carbon::now()){
+                return redirect()->route('index.ended');
+            }
+
             $check_daily_user = ProductsDownloaded::where('id_user', '=', $id_user)->whereDate('created_at', Carbon::today())->count();
             if($check_daily_user >= 2)
             {
