@@ -72,7 +72,7 @@ class ProductsDownloadedController extends Controller
                 'id_user' => $id_user,
             );
 
-            $save_data = ProductsDownloaded::firstOrCreate($data);
+            $save_data = ProductsDownloaded::create($data);
 
             // return redirect()->route('index.details', ['id' => $id]);
             return redirect()->away($product->url_file);
