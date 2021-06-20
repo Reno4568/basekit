@@ -28,21 +28,44 @@
       <section class="py-5">
         <div class="container">
             <div class="row justify-content-center text-center">
-                <div class="col-lg-4 col-12">
+                <div class="col-lg-5 col-12">
                     <h2 class="lh-base">
-                        We are sorry!
+                        Our Friendly Pricing
                     </h2>
                     <p>
-                        You have downloaded 2 products today. Upgrade to Premium to unlock the limitless of productivity.
-                    </p>
-                    <p class="mt-4">
-                        <a href="https://api.whatsapp.com/send?phone=6285156562504&text=Hello!+I+want+to+upgrade+my+account+to+Premium+Access." class="btn btn-info">
-                            Upgrade to Premium
-                        </a>
+                        Start your future project faster and better with us.
                     </p>
                 </div>
             </div>
         </div>
+      </section>
+
+      <section class="py-5">
+          <div class="container">
+              <div class="row">
+                <div class="col-lg-3">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Free Trial 14-Days</h5>
+                        <p class="card-text">Get an access to our thousands UI for your future project.</p>
+                        <a href="#" class="btn btn-light">Start Trial</a>
+                      </div>
+                    </div>
+                  </div>
+                  @forelse($all_packages as $item_package)
+                  <div class="col-lg-4">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ $item_package->name }}</h5>
+                        <p class="card-text">With this package you can unlock all of them and join our community to help each other.</p>
+                        <a href="#" class="btn btn-primary">Subscribe Now</a>
+                      </div>
+                    </div>
+                  </div>
+                  @empty
+                  @endforelse
+              </div>
+          </div>
       </section>
 
     <!-- Optional JavaScript; choose one of the two! -->
