@@ -9,6 +9,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <title>BaseKit - Speed Your Development Work</title>
+    <meta name="description" content="Download template Flutter {{ $details_product->name }} secara online dan gratis berkonsultasi dengan mentor yang berpengalaman pada bidangnya di BaseKit.">
+    <meta name="keywords" content="Flutter, Android, Dart, UI Design">
+    <meta name="author" content="BaseKit" />
+
+    <meta image="{{ Storage::url($details_product->thumbnail) }}">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="{{ Storage::url($details_product->thumbnail) }}">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="BaseKit - Speed Your Development Work">
+    <meta property="og:site_name" content="BaseKit">
+    <meta property="og:url" content="https://getbasekit.com/details/{{ $details_product->id }}">
+    <meta property="og:description" content="Download template Flutter {{ $details_product->name }} secara online dan gratis berkonsultasi dengan mentor yang berpengalaman pada bidangnya di BaseKit.">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVE956P96X"></script>
