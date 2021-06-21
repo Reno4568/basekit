@@ -39,6 +39,8 @@ Route::get('/category/{id}', [HomeController::class, 'category'])->name('index.c
 Route::get('/download_product/{id}', [ProductsDownloadedController::class, 'store'])->name('download_product');
 Route::get('/checkout/{type}', [HomeController::class, 'checkout'])->name('checkout')->middleware(['auth']);
 Route::get('/checkout/pay/{type}', [HomeController::class, 'pay'])->name('pay')->middleware(['auth']);
+Route::get('/success_join/{type}', [HomeController::class, 'success_join'])->name('success_join')->middleware(['auth']);
+
 
 // register member
 Route::resource('gates', GateController::class);

@@ -56,6 +56,7 @@ class HomeController extends Controller
                     'expired_at' => Carbon::now()->addDays(3),
                 );
                 $my_trial = SubscribeTransactions::firstOrCreate($data);
+                return view('pages.frontsite.product.success_join', compact('type'));
             }
             else {
                 return redirect()->route('index.ended');

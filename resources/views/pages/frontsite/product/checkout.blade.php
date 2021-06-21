@@ -30,7 +30,7 @@
             <div class="row justify-content-center text-center">
                 <div class="col-lg-4 col-12">
                     <h2 class="lh-base">
-                        Checkout {{ $type }}
+                        Checkout Subscribe
                     </h2>
                     <p>
                         Unlock our thousands UI design that helps you to be more productive.
@@ -53,11 +53,14 @@
                           </tr>
                         </thead>
                         <tbody>
+                          @if($type == 'trial')
                           <tr>
-                            <td>Mark</td>
+                            <td>{{ $type }}</td>
                             <td>3 Days</td>
                             <td>IDR 0</td>
                           </tr>
+                          @else
+                          @endif
                         </tbody>
                       </table>
                 </div>
