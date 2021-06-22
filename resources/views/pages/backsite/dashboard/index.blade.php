@@ -45,6 +45,14 @@
                     </div>
                     <div class="col-lg-2">
                         <h2>
+                            {{ $total_trial_ongoing }}
+                        </h2>
+                        <p>
+                            Trial Ongoing
+                        </p>
+                    </div>
+                    <div class="col-lg-2">
+                        <h2>
                             {{ $total_trial_ended }}
                         </h2>
                         <p>

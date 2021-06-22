@@ -48,8 +48,9 @@ class DashboardController extends Controller
         $total_users = User::all()->count();
         $total_downloaded = ProductsDownloaded::all()->count();
         $total_trial_ended = SubscribeTransactions::where('expired_at', '<', Carbon::now())->count();
+        $total_trial_ongoing = SubscribeTransactions::where('expired_at', '>', Carbon::now())->count();
 
-        return view('pages.backsite.dashboard.index', compact('total_users', 'total_downloaded', 'total_trial_ended'));
+        return view('pages.backsite.dashboard.index', compact('total_users', 'total_downloaded', 'total_trial_ended', 'total_trial_ongoing'));
     }
 
     /**
