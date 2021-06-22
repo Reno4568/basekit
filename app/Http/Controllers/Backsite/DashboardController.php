@@ -14,6 +14,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\Workspace\SubscribeTransactions;
+use App\Models\Workspace\ProductsDownloaded;
+use App\Models\User;
+use Carbon\Carbon;
 
 use Gate;
 use File;
@@ -41,7 +45,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('pages.backsite.dashboard.index');
+        $total_users = User::all()->count();
+        $total_downloaded = ProductsDownloaded::all()->count();
+        $total_trial_ended = SubscribeTransactions::where('expired_at', '<', Carbon::now())->count();
+
+        return view('pages.backsite.dashboard.index', compact('total_users', 'total_downloaded', 'total_trial_ended'));
     }
 
     /**

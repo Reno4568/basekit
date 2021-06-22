@@ -26,7 +26,33 @@
 
             <div class="content-body">
                 @if(Auth::user()->email == 'admin@mail.com')
-                <div class="row justify-content-center">
+                <div class="row py-2 my-2">
+                    <div class="col-lg-2">
+                        <h2>
+                            {{ $total_users }}
+                        </h2>
+                        <p>
+                            Total Users
+                        </p>
+                    </div>
+                    <div class="col-lg-2">
+                        <h2>
+                            {{ $total_downloaded }}
+                        </h2>
+                        <p>
+                            Total Downloaded
+                        </p>
+                    </div>
+                    <div class="col-lg-2">
+                        <h2>
+                            {{ $total_trial_ended }}
+                        </h2>
+                        <p>
+                            Trial Ended
+                        </p>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-5">
                     <div class="col-lg-4 text-center">
                         <h1>
                             Let's Help Developer
