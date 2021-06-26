@@ -7,6 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/mainq.css')}}"/>
+
 
     <title>BaseKit - Speed Your Development Work</title>
     <meta name="description" content="Download template Flutter {{ $details_product->name }} secara online dan gratis berkonsultasi dengan mentor yang berpengalaman pada bidangnya di BaseKit.">
@@ -88,6 +90,9 @@
             </div>
         </div>
       </section>
+
+    @include('pages.frontsite.components.promotionbox')
+
 
     <!-- Optional JavaScript; choose one of the two! -->
 
